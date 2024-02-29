@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+#googleButton {
+    background: #4285F4;
+    border-radius: 1px;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    width: 240px;
+}
+
+#googleButton {
+    user-select: none;
+    cursor: pointer;
+}
+
+#googleButton span.icon {
+    background: url('https://flixable.com/images/google.svg') white center center no-repeat;
+    display: block;
+    float: left;
+    height: 18px;
+    padding: 15px;
+    width: 18px;
+}
+
+#googleButton span.text {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 48px;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+    </style>
+</head>
+<body>
+    <div id="googleButton" onclick="redirectToCallback()">
+        <span class="icon"></span>
+        <span class="text">Log In With Google</span>
+    </div>
+    <script>
+        function redirectToCallback() {
+            window.location.href = '/callback';
+        }
+    </script>
+</body>
+</html>

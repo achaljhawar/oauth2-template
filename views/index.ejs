@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hi Team SWD Nucleus !</h1>
+    <div id="user-info">
+        <img id="user-image" alt="User Image" src = <%= user.picture %> >
+        <h2 id="user-name"><%= user.name %></h2>
+        <p id="user-email"><%= user.email %></p>
+    </div>
+</body>
+</html>
