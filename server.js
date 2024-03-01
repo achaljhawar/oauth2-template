@@ -2,7 +2,6 @@ import express from "express";
 import querystring from "qs";
 import axios from "axios";
 import jwt from "jsonwebtoken";
-const port = 4000;
 const app = express()
 import session from "express-session";
 import 'dotenv/config';
@@ -14,7 +13,6 @@ app.use(session({
 function getGoogleAuthURL() {
     const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
     const options = {
-      /*redirect_uri: `http://localhost:4000/auth/google`,*/
       redirect_uri: `https://oauth2-template.onrender.com/auth/google`,
       client_id: process.env.GOOGLE_CLIENT_ID,
       access_type: "offline",
@@ -44,8 +42,8 @@ async function getTokens({ code, clientId, clientSecret, redirectUri }) {
     try {
         const response = await axios.post(url, querystring.stringify(values), {
             headers: {
-                "Content-Type" : "application/x-www-form-urlencoded",
-            },  
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
         });
         return response.data;
     } catch (error) {
@@ -63,7 +61,6 @@ app.get("/auth/google", async (req, res) => {
             code,
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            /*redirectUri: "http://localhost:4000/auth/google"*/
             redirectUri: "https://oauth2-template.onrender.com/auth/google"
         });
         
@@ -78,7 +75,6 @@ app.get("/auth/google", async (req, res) => {
         res.redirect("/")
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: "Failed to fetch authorization tokens" });
     }
 });
 app.get("/auth/google/url" , (req,res) => {
@@ -87,13 +83,13 @@ app.get("/auth/google/url" , (req,res) => {
 app.get("/",(req,res) => {
     const token = req.session.token;
     if (!token) {
-        res.redirect("/login");
+        return res.redirect("/login");
     }
     jwt.verify(token, 'mySecretKey' , (err,decoded) => {
         if (err) {
-            res.redirect("/login");
+            return res.redirect("/login");
         }
         res.render('index', { user: decoded });
     })
 })
-app.listen(port);
+app.listen(4000);
