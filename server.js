@@ -14,7 +14,8 @@ app.use(session({
 function getGoogleAuthURL() {
     const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
     const options = {
-      redirect_uri: `http://localhost:4000/auth/google`,
+      /*redirect_uri: `http://localhost:4000/auth/google`,*/
+      redirect_uri: `https://oauth2-template.onrender.com/auth/google`,
       client_id: process.env.GOOGLE_CLIENT_ID,
       access_type: "offline",
       response_type: "code",
@@ -62,7 +63,8 @@ app.get("/auth/google", async (req, res) => {
             code,
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            redirectUri: "http://localhost:4000/auth/google"
+            /*redirectUri: "http://localhost:4000/auth/google"*/
+            redirectUri: "https://oauth2-template.onrender.com/auth/google"
         });
         
         const { data: userInfo } = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`, {
