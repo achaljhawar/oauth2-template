@@ -77,9 +77,7 @@ app.get("/auth/google", async (req, res) => {
         console.log(error);
     }
 });
-app.get("/auth/google/url" , (req,res) => {
-    return res.send(getoauthurl());
-})
+
 app.get("/",(req,res) => {
     const token = req.session.token;
     if (!token) {
