@@ -15,7 +15,7 @@ function getGoogleAuthURL() {
     const options = {
       redirect_uri: `https://oauth2-template.onrender.com/auth/google`,
       client_id: process.env.GOOGLE_CLIENT_ID,
-      access_type: "offline",
+      access_type: "online",
       response_type: "code",
       prompt: "consent",
       scope: [
